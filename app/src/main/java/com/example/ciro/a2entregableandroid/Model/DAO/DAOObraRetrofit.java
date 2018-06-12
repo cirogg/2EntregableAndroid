@@ -36,7 +36,7 @@ public class DAOObraRetrofit {
 
     public void obtenerObrasDeInternet(final ResultListener<List<Obra>> escuchadorDelControlador){
 
-        Call<ContenedorObras>retrofitListener = serviceObra.getObras("A");
+        Call<ContenedorObras>retrofitListener = serviceObra.getObras("ABCD");
         retrofitListener.enqueue(new Callback<ContenedorObras>() {
             @Override
             public void onResponse(Call<ContenedorObras> call, Response<ContenedorObras> response) {
