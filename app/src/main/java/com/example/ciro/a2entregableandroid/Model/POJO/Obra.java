@@ -6,19 +6,30 @@ package com.example.ciro.a2entregableandroid.Model.POJO;
 
 public class Obra {
     String name;
+    String artistId;
 
-    public Obra(String titulo) {
-        this.name = titulo;
+    public Obra (){
+        //CONSTRUCTOR VACIO PARA FIREBASE
+    }
+
+    public Obra(String name, String artistId) {
+        this.name = name;
+        this.artistId = artistId;
     }
 
     public String getTitulo() {
         return name;
     }
 
+    public String getArtistId() {
+        return artistId;
+    }
+
     @Override
     public String toString() {
-        return "Producto{" +
-                "nombre='" + name +
+        return "Obra{" +
+                "name='" + name + '\'' +
+                ", artistId='" + artistId + '\'' +
                 '}';
     }
 }

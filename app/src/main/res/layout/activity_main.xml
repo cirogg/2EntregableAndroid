@@ -7,12 +7,35 @@
     android:orientation="vertical"
     tools:context="com.example.ciro.a2entregableandroid.View.MainActivity">
 
+    <android.support.v7.widget.Toolbar
 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:background="#aed581"
+        app:titleTextColor="#e91e63"
+        />
+
+
+    <Button
+        android:id="@+id/cmdTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TO LOGIN TEST"/>
+
+    <Button
+        android:id="@+id/cmdTestFirebase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TO FIREBASE TEST"/>
     <LinearLayout
         android:id="@+id/contenedorMainFeed"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
     </LinearLayout>
 

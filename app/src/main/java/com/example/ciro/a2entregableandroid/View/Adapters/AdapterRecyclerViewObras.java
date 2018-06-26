@@ -23,9 +23,11 @@ import java.util.List;
 public class AdapterRecyclerViewObras extends RecyclerView.Adapter {
 
     List<Obra> listaDeObrasDelRecyclerView;
+    ComunicadoraAdapterRWalFragment comunicadoraAdapterRWalFragment;
 
-    public AdapterRecyclerViewObras(List<Obra> listaDeObrasDelRecyclerView) {
+    public AdapterRecyclerViewObras(List<Obra> listaDeObrasDelRecyclerView, ComunicadoraAdapterRWalFragment comunicadoraAdapterRWalFragment) {
         this.listaDeObrasDelRecyclerView = listaDeObrasDelRecyclerView;
+        this.comunicadoraAdapterRWalFragment = comunicadoraAdapterRWalFragment;
     }
 
     @NonNull
@@ -61,6 +63,14 @@ public class AdapterRecyclerViewObras extends RecyclerView.Adapter {
         public ViewHolderObras(View itemView) {
             super(itemView);
             textViewTitulo = itemView.findViewById(R.id.textViewTitulo);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Integer posicionSeleccionada = getAdapterPosition();
+
+                    comunicadoraAdapterRWalFragment.informarObraSeleccionadaDelRW(posicionSeleccionada);
+                }
+            });
         }
 
         private void asignarDatosALaCelda(Obra obra){
@@ -70,6 +80,6 @@ public class AdapterRecyclerViewObras extends RecyclerView.Adapter {
     }
 
     public interface ComunicadoraAdapterRWalFragment{
-        public void informarObraSeleccionadaDelRW(); //VER COMO MANDAR
+        public void informarObraSeleccionadaDelRW(Integer pos); //VER COMO MANDAR
     }
 }

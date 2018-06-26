@@ -1,6 +1,7 @@
 package com.example.ciro.a2entregableandroid.View;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,15 +23,23 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentFeed extends Fragment {
+public class FragmentFeed extends Fragment implements AdapterRecyclerViewObras.ComunicadoraAdapterRWalFragment{
 
     List<Obra>listaDeObras;
     RecyclerView recyclerViewDeObras;
+    ComunicadorFragmentAActivity comunicadorFragmentAActivity;
+
+    public static List<Obra> listaDeObrasPublica;
 
     public FragmentFeed() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.comunicadorFragmentAActivity = (ComunicadorFragmentAActivity)context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,8 +62,9 @@ public class FragmentFeed extends Fragment {
             @Override
             public void finish(List<Obra> resultado) {
                 listaDeObras = resultado;
-                AdapterRecyclerViewObras adapterRecyclerViewObras = new AdapterRecyclerViewObras(listaDeObras);
+                AdapterRecyclerViewObras adapterRecyclerViewObras = new AdapterRecyclerViewObras(listaDeObras,FragmentFeed.this);
                 recyclerViewDeObras.setAdapter(adapterRecyclerViewObras);
+                listaDeObrasPublica = resultado;
             }
         });
 
@@ -63,5 +73,12 @@ public class FragmentFeed extends Fragment {
     }
 
 
+    @Override
+    public void informarObraSeleccionadaDelRW(Integer pos) {
+        comunicadorFragmentAActivity.clickearonEnLaObra(pos);
+    }
 
+    public interface ComunicadorFragmentAActivity{
+        public void clickearonEnLaObra(Integer pos);
+    }
 }

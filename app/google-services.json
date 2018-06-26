@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "92461959383",
+    "firebase_url": "https://entregableandroid-86209.firebaseio.com",
+    "project_id": "entregableandroid-86209",
+    "storage_bucket": "entregableandroid-86209.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92461959383:android:3b9435bf4f09efdd",
+        "android_client_info": {
+          "package_name": "com.example.ciro.a2entregableandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92461959383-2euqm5o1bkih1l6rjvgcg6l68ajfghtk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ciro.a2entregableandroid",
+            "certificate_hash": "dd29baf1c02bfe065f40b6d9dd45f02ede2d23c9"
+          }
+        },
+        {
+          "client_id": "92461959383-729tlf23edn2a2fdjin3ln4n0pmtbhf8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHTig72vr_QI8D4JW5hCG49e7QZYOD0SI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92461959383-729tlf23edn2a2fdjin3ln4n0pmtbhf8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
