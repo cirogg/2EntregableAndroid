@@ -7,7 +7,7 @@ import java.util.List;
  */
 
 public class ContenedorObras {
-    private List<Obra>paints;
+    private List<Obra> paints;
 
     public ContenedorObras(List<Obra> listaDeObras) {
         this.paints = listaDeObras;

@@ -13,8 +13,7 @@ import java.util.List;
 public class ObraController {
 
 
-
-    public void obtenerProductos(final ResultListener<List<Obra>> escuchadorDeLaVista){
+    public void obtenerProductos(final ResultListener<List<Obra>> escuchadorDeLaVista) {
         ResultListener<List<Obra>> escuchadorDelControlador = new ResultListener<List<Obra>>() {
             @Override
             public void finish(List<Obra> resultado) {
@@ -23,17 +22,17 @@ public class ObraController {
         };
 
         List<Obra> obras = null;
-        if (hayInternet()){
+        if (hayInternet()) {
             DAOObraRetrofit daoObraRetrofit = new DAOObraRetrofit();
             daoObraRetrofit.obtenerObrasDeInternet(escuchadorDelControlador);
-        }else{
+        } else {
 
         }
 
 
     }
 
-    public Boolean hayInternet(){
+    public Boolean hayInternet() {
         return true;
     }
 

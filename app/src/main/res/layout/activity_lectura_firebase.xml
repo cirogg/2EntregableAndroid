@@ -13,15 +13,14 @@
         android:layout_height="wrap_content"
         android:text="OBRA"
         android:textSize="24dp"
-        android:gravity="center"/>
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/textFireBaseTest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="TEXTO"
-        android:textSize="24dp"
-        />
+        android:textSize="24dp" />
 
 
 </LinearLayout>

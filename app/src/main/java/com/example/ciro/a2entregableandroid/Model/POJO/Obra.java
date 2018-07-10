@@ -7,14 +7,16 @@ package com.example.ciro.a2entregableandroid.Model.POJO;
 public class Obra {
     String name;
     String artistId;
+    String image;
 
-    public Obra (){
+    public Obra() {
         //CONSTRUCTOR VACIO PARA FIREBASE
     }
 
-    public Obra(String name, String artistId) {
+    public Obra(String name, String artistId, String image) {
         this.name = name;
         this.artistId = artistId;
+        this.image = image;
     }
 
     public String getTitulo() {
@@ -25,11 +27,16 @@ public class Obra {
         return artistId;
     }
 
+    public String getImage() {
+        return image;
+    }
+
     @Override
     public String toString() {
         return "Obra{" +
                 "name='" + name + '\'' +
                 ", artistId='" + artistId + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

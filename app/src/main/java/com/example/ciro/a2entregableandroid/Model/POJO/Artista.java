@@ -11,7 +11,7 @@ public class Artista {
     String nationality;
     String Influenced_by;
 
-    public Artista(){
+    public Artista() {
         //CONSTRUCTOR VACIO PARA Firebase
     }
 

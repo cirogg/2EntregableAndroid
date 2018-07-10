@@ -12,5 +12,5 @@ import retrofit2.http.Query;
 
 public interface ServiceObra {
     @GET("/bins/x858r/")
-    Call<ContenedorObras>getObras(@Query("q") String obraABuscar);
+    Call<ContenedorObras> getObras(@Query("q") String obraABuscar);
 }

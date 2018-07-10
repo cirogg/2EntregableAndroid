@@ -3,6 +3,7 @@
     package="com.example.ciro.a2entregableandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -47,7 +48,8 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.LecturaFirebaseActivity"></activity>
+        <activity android:name=".View.LecturaFirebaseActivity" />
+        <activity android:name=".Controller.CamaraFirebaseActivity"></activity>
     </application>
 
 </manifest>

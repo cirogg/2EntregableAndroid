@@ -23,9 +23,9 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentFeed extends Fragment implements AdapterRecyclerViewObras.ComunicadoraAdapterRWalFragment{
+public class FragmentFeed extends Fragment implements AdapterRecyclerViewObras.ComunicadoraAdapterRWalFragment {
 
-    List<Obra>listaDeObras;
+    List<Obra> listaDeObras;
     RecyclerView recyclerViewDeObras;
     ComunicadorFragmentAActivity comunicadorFragmentAActivity;
 
@@ -38,7 +38,7 @@ public class FragmentFeed extends Fragment implements AdapterRecyclerViewObras.C
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.comunicadorFragmentAActivity = (ComunicadorFragmentAActivity)context;
+        this.comunicadorFragmentAActivity = (ComunicadorFragmentAActivity) context;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class FragmentFeed extends Fragment implements AdapterRecyclerViewObras.C
         View view = inflater.inflate(R.layout.fragment_fragment_feed, container, false);
 
         recyclerViewDeObras = view.findViewById(R.id.recyclerViewFeedObras);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext(),LinearLayoutManager.VERTICAL,false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewDeObras.setLayoutManager(layoutManager);
 
         cargarProductos();
@@ -56,18 +56,17 @@ public class FragmentFeed extends Fragment implements AdapterRecyclerViewObras.C
         return view;
     }
 
-    public void cargarProductos(){
+    public void cargarProductos() {
         ObraController obraController = new ObraController();
         obraController.obtenerProductos(new ResultListener<List<Obra>>() {
             @Override
             public void finish(List<Obra> resultado) {
                 listaDeObras = resultado;
-                AdapterRecyclerViewObras adapterRecyclerViewObras = new AdapterRecyclerViewObras(listaDeObras,FragmentFeed.this);
+                AdapterRecyclerViewObras adapterRecyclerViewObras = new AdapterRecyclerViewObras(listaDeObras, FragmentFeed.this);
                 recyclerViewDeObras.setAdapter(adapterRecyclerViewObras);
                 listaDeObrasPublica = resultado;
             }
         });
-
 
 
     }
@@ -78,7 +77,7 @@ public class FragmentFeed extends Fragment implements AdapterRecyclerViewObras.C
         comunicadorFragmentAActivity.clickearonEnLaObra(pos);
     }
 
-    public interface ComunicadorFragmentAActivity{
+    public interface ComunicadorFragmentAActivity {
         public void clickearonEnLaObra(Integer pos);
     }
 }

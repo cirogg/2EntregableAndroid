@@ -21,7 +21,6 @@ public class LecturaFirebaseActivity extends AppCompatActivity {
     TextView textViewContenedorTest;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +41,7 @@ public class LecturaFirebaseActivity extends AppCompatActivity {
         leerSimple(idDeArtistaDeLaObraSeleccionada);
     }
 
-    public void escribir(){
+    public void escribir() {
         DatabaseReference mDatabase;
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -62,11 +61,9 @@ public class LecturaFirebaseActivity extends AppCompatActivity {
         };
 
 
-
-
     }
 
-    public void leerSimple (final String idDeArtista){
+    public void leerSimple(final String idDeArtista) {
 
 
         DatabaseReference mDatabase;
@@ -79,18 +76,21 @@ public class LecturaFirebaseActivity extends AppCompatActivity {
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             Artista ArtistaLeido;
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Toast.makeText(LecturaFirebaseActivity.this, "LECTURA PIOLA", Toast.LENGTH_SHORT).show();
-               // Artista ArtistaLeido = dataSnapshot.getValue(Artista.class);
+                // Artista ArtistaLeido = dataSnapshot.getValue(Artista.class);
 
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                /*for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     Artista ArtistaLeidoDelIter = dataSnapshot1.getValue(Artista.class);
                     if (ArtistaLeidoDelIter.getArtistId().equals(idDeArtista)){
                         ArtistaLeido = ArtistaLeidoDelIter;
                         break;
                     }
-                }
+                }*/
+
+                ArtistaLeido = iterarJSonFirebaseArtista(dataSnapshot, idDeArtista);
 
 
                 textViewContenedorTest.setText(ArtistaLeido.toString());
@@ -104,7 +104,18 @@ public class LecturaFirebaseActivity extends AppCompatActivity {
         databaseReference.addListenerForSingleValueEvent(valueEventListener);
 
 
+    }
 
+    public Artista iterarJSonFirebaseArtista(DataSnapshot dataSnapshot, String idDeArtista) {
+        Artista ArtistaARetornar = null;
+        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+            Artista ArtistaLeidoDelIter = dataSnapshot1.getValue(Artista.class);
+            if (ArtistaLeidoDelIter.getArtistId().equals(idDeArtista)) {
+                ArtistaARetornar = ArtistaLeidoDelIter;
+                break;
+            }
+        }
+        return ArtistaARetornar;
     }
 
 }

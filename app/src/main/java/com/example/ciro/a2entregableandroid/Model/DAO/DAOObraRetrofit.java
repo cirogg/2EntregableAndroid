@@ -24,19 +24,19 @@ public class DAOObraRetrofit {
     private Retrofit retrofit;
     private ServiceObra serviceObra;
 
-    public DAOObraRetrofit(){
+    public DAOObraRetrofit() {
         baseURL = "https://api.myjson.com/bins/x858r/";
         retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        serviceObra= retrofit.create(ServiceObra.class);
+        serviceObra = retrofit.create(ServiceObra.class);
     }
 
-    public void obtenerObrasDeInternet(final ResultListener<List<Obra>> escuchadorDelControlador){
+    public void obtenerObrasDeInternet(final ResultListener<List<Obra>> escuchadorDelControlador) {
 
-        Call<ContenedorObras>retrofitListener = serviceObra.getObras("ABCD");
+        Call<ContenedorObras> retrofitListener = serviceObra.getObras("ABCD");
         retrofitListener.enqueue(new Callback<ContenedorObras>() {
             @Override
             public void onResponse(Call<ContenedorObras> call, Response<ContenedorObras> response) {

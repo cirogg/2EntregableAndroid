@@ -15,21 +15,28 @@
         android:layout_width="match_parent"
         android:layout_height="?android:actionBarSize"
         android:background="#aed581"
-        app:titleTextColor="#e91e63"
-        />
+        app:titleTextColor="#e91e63" />
 
 
     <Button
         android:id="@+id/cmdTest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TO LOGIN TEST"/>
+        android:text="TO LOGIN TEST" />
 
     <Button
         android:id="@+id/cmdTestFirebase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TO FIREBASE TEST"/>
+        android:text="TO FIREBASE TEST" />
+
+    <Button
+        android:id="@+id/cmdTestCamara"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TO CAMARA TEST" />
+
+
     <LinearLayout
         android:id="@+id/contenedorMainFeed"
         android:orientation="vertical"

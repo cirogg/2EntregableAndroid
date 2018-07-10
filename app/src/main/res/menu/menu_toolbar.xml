@@ -6,22 +6,19 @@
         android:title="Busar"
         android:id="@+id/menuBuscar"
         android:icon="@drawable/ic_search_black_24dp"
-        app:showAsAction="always"
-        />
+        app:showAsAction="always" />
 
 
     <item
         android:title="Mi Perfil"
         android:id="@+id/menuMiPerfil"
         android:icon="@drawable/ic_assignment_ind_black_24dp"
-        app:showAsAction="ifRoom"
-        />
+        app:showAsAction="ifRoom" />
     <item
         android:title="Settings"
         android:id="@+id/menuSettings"
         android:icon="@drawable/ic_settings_black_24dp"
-        app:showAsAction="collapseActionView"
-        />
+        app:showAsAction="collapseActionView" />
 
 
 </menu>

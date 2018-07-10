@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.ciro.a2entregableandroid.Controller.CamaraFirebaseActivity">
+
+    <ImageView
+        android:id="@+id/imgCamaraHolder"
+        android:layout_width="match_parent"
+        android:layout_height="250dp" />
+
+    <Button
+        android:id="@+id/cmdSubirFotoFirebase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="subirFotoFirebase" />
+
+    <Button
+        android:id="@+id/cmdBajarFotoFirebase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="bajarFotoFirebase" />
+
+    <Button
+        android:id="@+id/sacarFoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="sacarFoto" />
+
+</LinearLayout>
