@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.ciro.a2entregableandroid.Controller.CamaraFirebaseActivity">
+    tools:context="com.example.ciro.a2entregableandroid.View.CamaraFirebaseActivity">
 
     <ImageView
         android:id="@+id/imgCamaraHolder"
@@ -16,18 +16,21 @@
         android:id="@+id/cmdSubirFotoFirebase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="subirFotoFirebase" />
+        android:onClick="subirFotoFirebase"
+        android:text="Subir Foto a Firebase"/>
 
     <Button
         android:id="@+id/cmdBajarFotoFirebase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="bajarFotoFirebase" />
+        android:onClick="bajarFotoFirebase"
+        android:text="Descargar Foto de Firebase"/>
 
     <Button
         android:id="@+id/sacarFoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="sacarFoto" />
+        android:onClick="sacarFoto"
+        android:text="Sacar Foto"/>
 
 </LinearLayout>

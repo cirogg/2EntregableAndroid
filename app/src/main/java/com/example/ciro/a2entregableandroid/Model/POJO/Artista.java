@@ -40,11 +40,8 @@ public class Artista {
 
     @Override
     public String toString() {
-        return "Artista{" +
-                "artistId=" + artistId +
-                ", name='" + name + '\'' +
-                ", nationality='" + nationality + '\'' +
-                ", influenced_by='" + Influenced_by + '\'' +
-                '}';
+        return "Nombre del Artista " + name + "\n" +
+                "Nacionalidad: " + nationality + "\n" +
+                "Influencias: " + Influenced_by;
     }
 }

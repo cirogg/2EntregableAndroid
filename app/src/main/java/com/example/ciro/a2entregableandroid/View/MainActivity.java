@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 
 
-import com.example.ciro.a2entregableandroid.Controller.CamaraFirebaseActivity;
 import com.example.ciro.a2entregableandroid.R;
 
 public class MainActivity extends AppCompatActivity implements FragmentFeed.ComunicadorFragmentAActivity {
@@ -21,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements FragmentFeed.Comu
     Button buttonTest;
     Button buttonTestFirebease;
     Button buttonTestCamara;
+    Button buttonTestChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements FragmentFeed.Comu
         buttonTest = findViewById(R.id.cmdTest);
         buttonTestFirebease = findViewById(R.id.cmdTestFirebase);
         buttonTestCamara = findViewById(R.id.cmdTestCamara);
+        buttonTestChat = findViewById(R.id.cmdTestChat);
 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -61,6 +62,14 @@ public class MainActivity extends AppCompatActivity implements FragmentFeed.Comu
             @Override
             public void onClick(View v) {
                 Intent unIntent = new Intent(MainActivity.this, CamaraFirebaseActivity.class);
+                startActivity(unIntent);
+            }
+        });
+
+        buttonTestChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent unIntent = new Intent(MainActivity.this,ChatActivity.class);
                 startActivity(unIntent);
             }
         });

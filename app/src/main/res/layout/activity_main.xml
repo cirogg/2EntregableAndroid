@@ -17,6 +17,11 @@
         android:background="#aed581"
         app:titleTextColor="#e91e63" />
 
+    <Button
+        android:id="@+id/cmdTestChat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TO CHAT TEST" />
 
     <Button
         android:id="@+id/cmdTest"

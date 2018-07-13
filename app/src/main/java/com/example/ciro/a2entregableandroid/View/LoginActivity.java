@@ -11,14 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ciro.a2entregableandroid.Model.POJO.Usuario;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 import com.example.ciro.a2entregableandroid.R;
+//import com.facebook.login.LoginClient;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,8 +28,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import org.w3c.dom.Text;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -90,9 +90,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookAccessToken(loginResult.getAccessToken());
-                Toast.makeText(LoginActivity.this, "Logueo Exitoso", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
+
+
             }
 
             @Override
@@ -132,8 +131,13 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-                        } else {
+                            String userNombre = user.getDisplayName();
 
+                            String userID = user.getUid();
+                            escribirUserEnFirebase(userID,userNombre);
+
+                        } else {
+                            Log.d("firebasito",task.getException().toString());
                         }
                     }
                 });
@@ -142,5 +146,21 @@ public class LoginActivity extends AppCompatActivity {
     public void speakText(){
         textToSpeech.speak(editTextTTS.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
     }
+
+    public void escribirUserEnFirebase(String userID, String userNombre){
+        DatabaseReference mDatabase;
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        mDatabase = firebaseDatabase.getReference();
+        DatabaseReference referenciaUsuario = mDatabase.child("usuarios").child(userID);
+
+        Usuario unUsuario = new Usuario(userNombre,userID);
+        referenciaUsuario.setValue(unUsuario);
+
+
+        Toast.makeText(LoginActivity.this, "Logueo Exitoso", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
 
 }
