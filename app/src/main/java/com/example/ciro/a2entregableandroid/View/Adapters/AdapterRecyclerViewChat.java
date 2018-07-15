@@ -13,6 +13,7 @@ import com.example.ciro.a2entregableandroid.Model.POJO.Mensaje;
 import com.example.ciro.a2entregableandroid.Model.POJO.Obra;
 import com.example.ciro.a2entregableandroid.R;
 import com.example.ciro.a2entregableandroid.View.ChatActivity;
+import com.example.ciro.a2entregableandroid.View.LoginActivity;
 
 import java.util.List;
 
@@ -49,11 +50,13 @@ public class AdapterRecyclerViewChat extends RecyclerView.Adapter {
                 View celda = layoutInflater.inflate(R.layout.celda_mensaje, parent, false);
                 ChatViewHolder chatViewHolder = new ChatViewHolder(celda);
                 holderDelMensaje = (ChatViewHolder)chatViewHolder;
+                break;
             }
             case R.layout.celda_mensaje_user:{
                 View celda = layoutInflater.inflate(R.layout.celda_mensaje_user, parent, false);
                 ChatViewHolder2 chatViewHolder2 = new ChatViewHolder2(celda);
                 holderDelMensaje = (ChatViewHolder2)chatViewHolder2;
+                break;
             }
         }
 
@@ -86,7 +89,7 @@ public class AdapterRecyclerViewChat extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        if(listaDeMensajes.get(position).getUserID()== ChatActivity.userID){
+        if(listaDeMensajes.get(position).getUserID().equals(LoginActivity.userID)){
             return R.layout.celda_mensaje_user;
         }else{
             return R.layout.celda_mensaje;
@@ -106,7 +109,7 @@ public class AdapterRecyclerViewChat extends RecyclerView.Adapter {
         private void asignarDatosALaCelda(Mensaje mensaje) {
             String autorDelMensaje = mensaje.getNombre().toString();
             String bodyDelMensaje = mensaje.getBody().toString();
-            //textViewAutor.setText(autorDelMensaje);
+            textViewAutor.setText(autorDelMensaje);
             textViewMensaje.setText(bodyDelMensaje);
         }
     }
@@ -123,7 +126,7 @@ public class AdapterRecyclerViewChat extends RecyclerView.Adapter {
         private void asignarDatosALaCelda2(Mensaje mensaje) {
             String autorDelMensaje = mensaje.getNombre().toString();
             String bodyDelMensaje = mensaje.getBody().toString();
-            //textViewAutor.setText(autorDelMensaje);
+            textViewAutor.setText(autorDelMensaje);
             textViewMensaje.setText(bodyDelMensaje);
         }
     }

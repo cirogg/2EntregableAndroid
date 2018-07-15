@@ -37,7 +37,7 @@ public class ChatActivity extends AppCompatActivity {
     RecyclerView recyclerViewMensajes;
     AdapterRecyclerViewChat adapterRecyclerViewChat;
 
-    public static String userID;
+    //public static String userID;
 
 
 
@@ -62,7 +62,7 @@ public class ChatActivity extends AppCompatActivity {
         leerSimple();
 
         //Obtengo usuario
-        userID =  FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         //final String nombre = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         //Fin Obtengo usuario
 
@@ -70,7 +70,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String body = editTextMensajeEnviar.getText().toString();
-                escribirMensajeEnFirebase(body);
+                escribirMensajeEnFirebase(body,LoginActivity.userID,LoginActivity.userNombre);
                 editTextMensajeEnviar.setText("");
                 adapterRecyclerViewChat.notifyDataSetChanged();
 
@@ -78,14 +78,14 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    public void escribirMensajeEnFirebase(String body){
+    public void escribirMensajeEnFirebase(String body,String userID,String nombre){
         DatabaseReference mDatabase;
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         mDatabase = firebaseDatabase.getReference();
         DatabaseReference referenciaMensajes = mDatabase.child("chat").push();
 
-        //Mensaje unMensaje = new Mensaje(userID,body,nombre);
-        Mensaje unMensaje = new Mensaje(body);
+        Mensaje unMensaje = new Mensaje(userID,body,nombre);
+        //Mensaje unMensaje = new Mensaje(body);
         referenciaMensajes.setValue(unMensaje);
         listaDeMensajes.add(unMensaje);
         adapterRecyclerViewChat.notifyDataSetChanged();

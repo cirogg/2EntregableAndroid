@@ -15,9 +15,6 @@ public class Mensaje {
         this.nombre = nombre;
     }
 
-    public Mensaje(String body) {
-        this.body = body;
-    }
 
     public Mensaje() {
     }

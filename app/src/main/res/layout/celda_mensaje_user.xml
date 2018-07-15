@@ -19,14 +19,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="AUTOR"
-            android:textSize="16dp"/>
+            android:textSize="16dp"
+            android:gravity="right"/>
 
         <TextView
             android:id="@+id/textViewMensajeEnviado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="HOLA HOLA"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:gravity="right"/>
 
     </LinearLayout>
 

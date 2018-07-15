@@ -7,6 +7,11 @@
     android:orientation="vertical"
     tools:context="com.example.ciro.a2entregableandroid.View.LecturaFirebaseActivity">
 
+    <ImageView
+        android:id="@+id/imgViewObraDetalle"
+        android:layout_width="match_parent"
+        android:layout_height="180dp" />
+
     <TextView
         android:id="@+id/textTituloObra"
         android:layout_width="match_parent"

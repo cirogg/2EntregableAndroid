@@ -19,6 +19,7 @@ import com.facebook.FacebookException;
 
 import com.example.ciro.a2entregableandroid.R;
 //import com.facebook.login.LoginClient;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,9 +41,15 @@ public class LoginActivity extends AppCompatActivity {
     private static final String EMAIL = "email";
     CallbackManager callbackManager;
 
+    Button loggearLocal;
+    EditText editTextUser;
+
     EditText editTextTTS;
     Button buttonTTS;
     TextToSpeech textToSpeech;
+
+    public static String userID;
+    public static String userNombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         editTextTTS = findViewById(R.id.editTextTtsTest);
         buttonTTS = findViewById(R.id.cmdttsTest);
+        loggearLocal = findViewById(R.id.cmdLogin);
+        editTextUser = findViewById(R.id.editTextUsuario);
         // FacebookSdk.sdkInitialize(getApplicationContext());
         //AppEventsLogger.activateApp(this);
 
@@ -78,6 +87,25 @@ public class LoginActivity extends AppCompatActivity {
 
 
        /////////////////////////////////////////////////////////////
+
+        //LOGGEO TRUCHO
+        loggearLocal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (editTextUser.getText().toString() != ""){
+                    userID = editTextUser.getText() + "0303";
+                    userNombre = editTextUser.getText().toString();
+                    escribirUserEnFirebase(userID,userNombre);
+
+                }else{
+                    Toast.makeText(LoginActivity.this, "Es necesario loggearse", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+        ///////////////
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -131,9 +159,9 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-                            String userNombre = user.getDisplayName();
+                            userNombre = user.getDisplayName();
 
-                            String userID = user.getUid();
+                            userID = user.getUid();
                             escribirUserEnFirebase(userID,userNombre);
 
                         } else {
