@@ -37,12 +37,16 @@ public class ChatActivity extends AppCompatActivity {
     RecyclerView recyclerViewMensajes;
     AdapterRecyclerViewChat adapterRecyclerViewChat;
 
+    public static String userID;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+
 
         textViewTestLecturaChat = findViewById(R.id.textViewTestLecturaChats);
         editTextMensajeEnviar = findViewById(R.id.editTextMensajeEnviar);
@@ -58,7 +62,7 @@ public class ChatActivity extends AppCompatActivity {
         leerSimple();
 
         //Obtengo usuario
-        //final String userID =  FirebaseAuth.getInstance().getCurrentUser().getUid();
+        userID =  FirebaseAuth.getInstance().getCurrentUser().getUid();
         //final String nombre = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         //Fin Obtengo usuario
 
