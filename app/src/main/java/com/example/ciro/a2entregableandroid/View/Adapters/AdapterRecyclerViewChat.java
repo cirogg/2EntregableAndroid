@@ -28,6 +28,10 @@ public class AdapterRecyclerViewChat extends RecyclerView.Adapter {
         this.listaDeMensajes = listaDeMensajes;
     }
 
+    public void setListaDeMensajes(List<Mensaje> listaDeMensajes) {
+        this.listaDeMensajes = listaDeMensajes;
+    }
+
     @NonNull
 
     @Override
@@ -64,9 +68,9 @@ public class AdapterRecyclerViewChat extends RecyclerView.Adapter {
             textViewMensaje = itemView.findViewById(R.id.textViewMensajeEnviado);
         }
         private void asignarDatosALaCelda(Mensaje mensaje) {
-            String autorDelMensaje = mensaje.getUserID().toString();
+            //String autorDelMensaje = mensaje.getNombre().toString();
             String bodyDelMensaje = mensaje.getBody().toString();
-            textViewAutor.setText(autorDelMensaje);
+            //textViewAutor.setText(autorDelMensaje);
             textViewMensaje.setText(bodyDelMensaje);
         }
     }

@@ -37,6 +37,8 @@ public class ChatActivity extends AppCompatActivity {
     RecyclerView recyclerViewMensajes;
     AdapterRecyclerViewChat adapterRecyclerViewChat;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,64 +55,36 @@ public class ChatActivity extends AppCompatActivity {
         adapterRecyclerViewChat = new AdapterRecyclerViewChat(listaDeMensajes);
         recyclerViewMensajes.setAdapter(adapterRecyclerViewChat);
 
-
-        DatabaseReference mDatabase;
-
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        mDatabase = firebaseDatabase.getReference();
-        DatabaseReference referenceChat = mDatabase.child("chat");
-
-        referenceChat.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                dataSnapshot.getChildren();
-
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    Mensaje mensajeLeido = dataSnapshot1.getValue(Mensaje.class);
-                    listaDeMensajes.add(mensajeLeido);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        //leerSimple();
-        adapterRecyclerViewChat.notifyDataSetChanged();
+        leerSimple();
 
         //Obtengo usuario
-        //FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        final String userID =  FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //final String userID =  FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //final String nombre = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         //Fin Obtengo usuario
 
         fabEnviarMensaje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String body = editTextMensajeEnviar.getText().toString();
-                escribirMensajeEnFirebase(userID,body);
-                leerSimple();
+                escribirMensajeEnFirebase(body);
+                editTextMensajeEnviar.setText("");
                 adapterRecyclerViewChat.notifyDataSetChanged();
+
             }
         });
-
-
     }
 
-
-    public void escribirMensajeEnFirebase(String userID, String body){
+    public void escribirMensajeEnFirebase(String body){
         DatabaseReference mDatabase;
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         mDatabase = firebaseDatabase.getReference();
         DatabaseReference referenciaMensajes = mDatabase.child("chat").push();
 
-        Mensaje unMensaje = new Mensaje(userID,body);
+        //Mensaje unMensaje = new Mensaje(userID,body,nombre);
+        Mensaje unMensaje = new Mensaje(body);
         referenciaMensajes.setValue(unMensaje);
-
-
-        Toast.makeText(ChatActivity.this, "Mensaje escrito", Toast.LENGTH_SHORT).show();
-
+        listaDeMensajes.add(unMensaje);
+        adapterRecyclerViewChat.notifyDataSetChanged();
     }
 
 
@@ -128,10 +102,14 @@ public class ChatActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 dataSnapshot.getChildren();
 
+                if (listaDeMensajes.size() != 0)listaDeMensajes = new ArrayList<>();
+
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     Mensaje mensajeLeido = dataSnapshot1.getValue(Mensaje.class);
                     listaDeMensajes.add(mensajeLeido);
                 }
+                adapterRecyclerViewChat.setListaDeMensajes(listaDeMensajes);
+                adapterRecyclerViewChat.notifyDataSetChanged();
             }
 
             @Override
@@ -139,7 +117,8 @@ public class ChatActivity extends AppCompatActivity {
                 Toast.makeText(ChatActivity.this, "ERROR LEYENDO", Toast.LENGTH_SHORT).show();
             }
         };
-        referenceChat.addListenerForSingleValueEvent(valueEventListener);
+        //referenceChat.addListenerForSingleValueEvent(valueEventListener);
+        referenceChat.addValueEventListener(valueEventListener);
 
 
 
