@@ -127,7 +127,7 @@ public class LecturaFirebaseActivity extends AppCompatActivity {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Toast.makeText(LecturaFirebaseActivity.this, "LECTURA PIOLA", Toast.LENGTH_SHORT).show();
+
                 ArtistaLeido = iterarJSonFirebaseArtista(dataSnapshot, idDeArtista);
 
                 if (getArtistas().size() == 0){
