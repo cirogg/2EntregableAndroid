@@ -1,6 +1,8 @@
 package com.example.ciro.a2entregableandroid.View;
 
 
+import android.arch.persistence.room.Room;
+import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +19,7 @@ import com.example.ciro.a2entregableandroid.R;
 import com.example.ciro.a2entregableandroid.ResultListener;
 import com.example.ciro.a2entregableandroid.View.Adapters.AdapterRecyclerViewObras;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,9 +28,11 @@ import java.util.List;
  */
 public class FragmentFeed extends Fragment implements AdapterRecyclerViewObras.ComunicadoraAdapterRWalFragment {
 
-    List<Obra> listaDeObras;
+    public static List<Obra> listaDeObras;
     RecyclerView recyclerViewDeObras;
     ComunicadorFragmentAActivity comunicadorFragmentAActivity;
+    AdapterRecyclerViewObras adapterRecyclerViewObras;
+
 
     public static List<Obra> listaDeObrasPublica;
 
@@ -42,10 +47,25 @@ public class FragmentFeed extends Fragment implements AdapterRecyclerViewObras.C
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+        ObraController obraController = new ObraController(getContext());
+        //obraController.deleteAll();
+     /*   listaDeObras = obraController.getObras();
+        adapterRecyclerViewObras.setListaDeObrasDelRecyclerView(listaDeObras);
+        adapterRecyclerViewObras.notifyDataSetChanged();*/
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_feed, container, false);
+
+        //CREADO NOCHE
+        listaDeObras = new ArrayList<>();
+        adapterRecyclerViewObras =  new AdapterRecyclerViewObras(listaDeObras, FragmentFeed.this);
 
         recyclerViewDeObras = view.findViewById(R.id.recyclerViewFeedObras);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -57,14 +77,19 @@ public class FragmentFeed extends Fragment implements AdapterRecyclerViewObras.C
     }
 
     public void cargarProductos() {
-        ObraController obraController = new ObraController();
+        final ObraController obraController = new ObraController(getContext());
         obraController.obtenerProductos(new ResultListener<List<Obra>>() {
             @Override
             public void finish(List<Obra> resultado) {
                 listaDeObras = resultado;
-                AdapterRecyclerViewObras adapterRecyclerViewObras = new AdapterRecyclerViewObras(listaDeObras, FragmentFeed.this);
+                adapterRecyclerViewObras = new AdapterRecyclerViewObras(listaDeObras, FragmentFeed.this);
                 recyclerViewDeObras.setAdapter(adapterRecyclerViewObras);
-                listaDeObrasPublica = resultado;
+                //persistirLista(resultado,obraController);
+              /* for (Obra obra : resultado) {
+                    obraController.addObra(obra);
+                }*/
+                adapterRecyclerViewObras.setListaDeObrasDelRecyclerView(listaDeObras);
+                //obraController.getObras();
             }
         });
 
@@ -80,4 +105,8 @@ public class FragmentFeed extends Fragment implements AdapterRecyclerViewObras.C
     public interface ComunicadorFragmentAActivity {
         public void clickearonEnLaObra(Integer pos);
     }
+
+
+
+
 }

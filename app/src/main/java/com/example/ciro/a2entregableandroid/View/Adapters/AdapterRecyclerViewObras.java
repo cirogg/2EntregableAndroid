@@ -20,6 +20,7 @@ import com.google.firebase.storage.StorageReference;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +32,8 @@ public class AdapterRecyclerViewObras extends RecyclerView.Adapter {
     List<Obra> listaDeObrasDelRecyclerView;
     ComunicadoraAdapterRWalFragment comunicadoraAdapterRWalFragment;
     Context context;
+
+
 
 
     public AdapterRecyclerViewObras(List<Obra> listaDeObrasDelRecyclerView, ComunicadoraAdapterRWalFragment comunicadoraAdapterRWalFragment) {
@@ -101,6 +104,18 @@ public class AdapterRecyclerViewObras extends RecyclerView.Adapter {
         Glide.with(context).using(new FirebaseImageLoader()).load(imageRef).into(imageView);
 
 
+    }
+
+    public void setListaDeObrasDelRecyclerView(List<Obra> listaDeObrasDelRecyclerViewAgregar) {
+        List<Obra>listita = new ArrayList<>();
+        listita = listaDeObrasDelRecyclerViewAgregar;
+        listaDeObrasDelRecyclerView = new ArrayList<>();
+        listaDeObrasDelRecyclerView.addAll(listita);
+        notifyDataSetChanged();
+    }
+    public void addObra(Obra obra){
+        listaDeObrasDelRecyclerView.add(obra);
+        notifyDataSetChanged();
     }
 
 

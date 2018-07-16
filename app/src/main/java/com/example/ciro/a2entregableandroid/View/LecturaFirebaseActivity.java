@@ -46,12 +46,12 @@ public class LecturaFirebaseActivity extends AppCompatActivity {
         ////////////
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         StorageReference storageReference = firebaseStorage.getReference();
-        StorageReference imageRef = storageReference.child(FragmentFeed.listaDeObrasPublica.get(pos).getImage());
+        StorageReference imageRef = storageReference.child(FragmentFeed.listaDeObras.get(pos).getImage());
         ///////////
 
         //Cargo el titulo de la obra clickeada
-        textViewTituloObra.setText(FragmentFeed.listaDeObrasPublica.get(pos).getTitulo());
-        String idDeArtistaDeLaObraSeleccionada = FragmentFeed.listaDeObrasPublica.get(pos).getArtistId();
+        textViewTituloObra.setText(FragmentFeed.listaDeObras.get(pos).getTitulo());
+        String idDeArtistaDeLaObraSeleccionada = FragmentFeed.listaDeObras.get(pos).getArtistId();
         //Glide.with(this).load(FragmentFeed.listaDeObrasPublica.get(pos).getImage()).into(imageViewObraDetalle);
         Glide.with(this).using(new FirebaseImageLoader()).load(imageRef).into(imageViewObraDetalle);
 
