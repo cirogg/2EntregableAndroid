@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-    
+
         loggearLocal = findViewById(R.id.cmdLogin);
         editTextUser = findViewById(R.id.editTextUsuario);
 
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (editTextUser.getText().toString() != ""){
+                if (!(editTextUser.getText().toString().isEmpty())){
                     userID = editTextUser.getText() + "0303";
                     userNombre = editTextUser.getText().toString();
                     escribirUserEnFirebase(userID,userNombre);
