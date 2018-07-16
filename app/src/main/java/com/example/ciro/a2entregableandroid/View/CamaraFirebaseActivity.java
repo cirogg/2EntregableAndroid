@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -64,36 +65,40 @@ public class CamaraFirebaseActivity extends AppCompatActivity {
         StorageReference imageRef = storageRef.child("usersUploads").child(LoginActivity.userID).child("upload");
         //StorageReference imageRef = storageRef.child("uploadTest.jpg");
 
+        if (imageViewFotoSacada.getDrawable() == null){
+            Toast.makeText(this, "No hay foto para subir", Toast.LENGTH_SHORT).show();
+        }else{
 
+            imageViewFotoSacada.setDrawingCacheEnabled(true);
+            imageViewFotoSacada.buildDrawingCache();
+            Bitmap bitmap = ((BitmapDrawable) imageViewFotoSacada.getDrawable()).getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] data = baos.toByteArray();
 
-        imageViewFotoSacada.setDrawingCacheEnabled(true);
-        imageViewFotoSacada.buildDrawingCache();
-        Bitmap bitmap = ((BitmapDrawable) imageViewFotoSacada.getDrawable()).getBitmap();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] data = baos.toByteArray();
-
-        final UploadTask uploadTask = imageRef.putBytes(data);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle unsuccessful uploads
-                Toast.makeText(CamaraFirebaseActivity.this, "Upload Fail", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                // ...
-                Toast.makeText(CamaraFirebaseActivity.this, "Upload piola", Toast.LENGTH_SHORT).show();
-                String urlDeLaImagenSubida = taskSnapshot.getDownloadUrl().toString();
-            }
-        });
-    }
+            final UploadTask uploadTask = imageRef.putBytes(data);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle unsuccessful uploads
+                    Toast.makeText(CamaraFirebaseActivity.this, "Upload Fail", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                    // ...
+                    Toast.makeText(CamaraFirebaseActivity.this, "Upload piola", Toast.LENGTH_SHORT).show();
+                    String urlDeLaImagenSubida = taskSnapshot.getDownloadUrl().toString();
+                }
+            });
+        }
 
    /* public String obtenerUserIdActual(){
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         return  firebaseAuth.getUid();
     }*/
+        }
+
 
 }
