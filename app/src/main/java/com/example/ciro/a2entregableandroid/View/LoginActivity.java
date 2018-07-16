@@ -55,38 +55,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        editTextTTS = findViewById(R.id.editTextTtsTest);
-        buttonTTS = findViewById(R.id.cmdttsTest);
+    
         loggearLocal = findViewById(R.id.cmdLogin);
         editTextUser = findViewById(R.id.editTextUsuario);
-        // FacebookSdk.sdkInitialize(getApplicationContext());
-        //AppEventsLogger.activateApp(this);
-
-        /////////////////////TEST DE TTS/////////////////
-
-
-        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                textToSpeech.setLanguage(new Locale("es", "ES"));
-                speakText();
-
-                //speakText();
-            }
-        });
-
-        buttonTTS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               speakText();
-            }
-        });
-
-
-
-
-
-       /////////////////////////////////////////////////////////////
 
         //LOGGEO TRUCHO
         loggearLocal.setOnClickListener(new View.OnClickListener() {

@@ -12,7 +12,7 @@
     <item
         android:title="LogOut"
         android:id="@+id/itemLogOut"
-        android:icon="@drawable/logout_icon"
+
         app:showAsAction="always"
         android:iconTint="@android:color/white"
         />

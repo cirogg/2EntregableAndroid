@@ -1,6 +1,9 @@
 package com.example.ciro.a2entregableandroid.View;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -34,48 +37,14 @@ public class MainActivity extends AppCompatActivity implements FragmentFeed.Comu
         setSupportActionBar(toolbar);
 
 
-        buttonTest = findViewById(R.id.cmdTest);
-        buttonTestFirebease = findViewById(R.id.cmdTestFirebase);
-        buttonTestCamara = findViewById(R.id.cmdTestCamara);
-        buttonTestChat = findViewById(R.id.cmdTestChat);
+
 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.contenedorMainFeed, new FragmentFeed());
         fragmentTransaction.commit();
 
-        buttonTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent unIntent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(unIntent);
-            }
-        });
 
-
-        buttonTestFirebease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent unIntent = new Intent(MainActivity.this, LecturaFirebaseActivity.class);
-                startActivity(unIntent);
-            }
-        });
-
-        buttonTestCamara.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent unIntent = new Intent(MainActivity.this, CamaraFirebaseActivity.class);
-                startActivity(unIntent);
-            }
-        });
-
-        buttonTestChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent unIntent = new Intent(MainActivity.this,ChatActivity.class);
-                startActivity(unIntent);
-            }
-        });
     }
 
     @Override
@@ -100,11 +69,16 @@ public class MainActivity extends AppCompatActivity implements FragmentFeed.Comu
 
         switch (item.getItemId()) {
 
+
+
             case R.id.itemChat:
-                //Toast.makeText(this,"yendo a chat",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ChatActivity.class);
-                startActivity(intent);
-                break;
+                if (hayInternet()) {
+                    Intent intent = new Intent(this, ChatActivity.class);
+                    startActivity(intent);
+                    break;
+                }else{
+                    Toast.makeText(this, "No hay internet", Toast.LENGTH_SHORT).show();
+                }
 
             case R.id.itemLogOut:
 
@@ -117,5 +91,19 @@ public class MainActivity extends AppCompatActivity implements FragmentFeed.Comu
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    private boolean hayInternet(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            Toast.makeText(this, "Hay internet", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(this, "NO hay internet", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 }

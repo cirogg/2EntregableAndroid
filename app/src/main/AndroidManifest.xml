@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,18 +15,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".View.MainActivity"
-            android:label="Feed">
-
-        </activity>
+            android:label="Feed"></activity>
         <activity
             android:name=".View.LoginActivity"
-            android:label="LogIn ATR" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:label="LogIn ATR">
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -52,7 +47,14 @@
         </activity>
         <activity android:name=".View.LecturaFirebaseActivity" />
         <activity android:name=".View.CamaraFirebaseActivity" />
-        <activity android:name=".View.ChatActivity"></activity>
+        <activity android:name=".View.ChatActivity" />
+        <activity android:name=".View.Moma">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

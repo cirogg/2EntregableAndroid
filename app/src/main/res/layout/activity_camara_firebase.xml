@@ -19,12 +19,6 @@
         android:onClick="subirFotoFirebase"
         android:text="Subir Foto a Firebase"/>
 
-    <Button
-        android:id="@+id/cmdBajarFotoFirebase"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="bajarFotoFirebase"
-        android:text="Descargar Foto de Firebase"/>
 
     <Button
         android:id="@+id/sacarFoto"

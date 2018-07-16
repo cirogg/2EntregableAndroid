@@ -53,7 +53,7 @@ public class ObraController {
 
     }
 
-    private boolean hayInternet(){
+    public boolean hayInternet(){
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {

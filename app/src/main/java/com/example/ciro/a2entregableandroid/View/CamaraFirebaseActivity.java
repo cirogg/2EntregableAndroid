@@ -60,8 +60,8 @@ public class CamaraFirebaseActivity extends AppCompatActivity {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference carpetaImagenesReference = storageRef.child("userUploads").child(obtenerUserIdActual());
-        StorageReference imageRef = storageRef.child("usersUploads").child(obtenerUserIdActual()).child("upload");
+        StorageReference carpetaImagenesReference = storageRef.child("userUploads").child(LoginActivity.userID);
+        StorageReference imageRef = storageRef.child("usersUploads").child(LoginActivity.userID).child("upload");
         //StorageReference imageRef = storageRef.child("uploadTest.jpg");
 
 
@@ -91,9 +91,9 @@ public class CamaraFirebaseActivity extends AppCompatActivity {
         });
     }
 
-    public String obtenerUserIdActual(){
+   /* public String obtenerUserIdActual(){
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         return  firebaseAuth.getUid();
-    }
+    }*/
 
 }

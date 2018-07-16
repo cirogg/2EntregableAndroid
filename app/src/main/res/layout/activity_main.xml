@@ -17,32 +17,7 @@
         android:background="#aed581"
         app:titleTextColor="#e91e63" />
 
-    <Button
-        android:id="@+id/cmdTestChat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TO CHAT TEST" />
-
-    <Button
-        android:id="@+id/cmdTest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TO LOGIN TEST" />
-
-    <Button
-        android:id="@+id/cmdTestFirebase"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TO FIREBASE TEST" />
-
-    <Button
-        android:id="@+id/cmdTestCamara"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TO CAMARA TEST" />
-
-
-    <LinearLayout
+   <LinearLayout
         android:id="@+id/contenedorMainFeed"
         android:orientation="vertical"
         android:layout_width="match_parent"
